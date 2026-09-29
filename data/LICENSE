@@ -1,0 +1,33 @@
+Data license: Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+https://creativecommons.org/licenses/by-nc/4.0/
+Full legal code: https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
+The files in this directory are derived from the following sources.
+
+1. Gender Representation in Video Games
+   Author: Palomar (Kaggle user "Brisa", br33sa), 2022
+   Source: https://www.kaggle.com/datasets/br33sa/gender-representation-in-video-games
+   License: CC BY-NC 4.0
+
+   Files: raw/kaggle_games.csv, raw/kaggle_characters.csv and
+   raw/kaggle_sexualization.csv are copies of the original tables, re-saved
+   without changes to their content (games.grivg.csv, characters.grivg.csv
+   and sexualization.grivg.csv).
+   processed/games.csv and processed/characters.csv are ADAPTED versions:
+   the games were filtered to those with a Metacritic score of at least 80 on
+   RAWG, integrated with RAWG metadata by normalized title, deduplicated by
+   game (one edition per game), and supplemented with derived columns
+   (numeric percentages and renamed score fields); the character table was
+   restricted to the selected games and joined with the sexualization
+   dimensions. See notebooks/01_data_processing.ipynb for every step.
+
+2. RAWG Video Games Database API
+   Source: https://rawg.io/apidocs (data from RAWG, https://rawg.io)
+   Files: raw/rawg_games_raw.csv and raw/rawg_collection_info.json
+   (collection of 28 September 2026). RAWG data remain subject to the RAWG
+   API terms of use.
+
+The adapted data in processed/ are licensed under CC BY-NC 4.0 as well.
+They may be shared and adapted for NON-COMMERCIAL purposes only, with
+attribution to the original authors listed above and an indication of any
+further changes. No warranties are given.

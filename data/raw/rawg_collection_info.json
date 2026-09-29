@@ -1,0 +1,12 @@
+{
+  "collected_at": "2026-09-28 20:33",
+  "endpoint": "https://api.rawg.io/api/games",
+  "parameters": {
+    "dates": "2010-01-01,2022-12-31",
+    "metacritic": "80,100",
+    "ordering": "-metacritic",
+    "page_size": 40
+  },
+  "titles_collected": 1280,
+  "total_reported_by_api": 1280
+}
