@@ -1,5 +1,7 @@
 # Female Playable Characters in Critically Acclaimed Video Games (2012-2022)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24486563.svg)](https://doi.org/10.5281/zenodo.24486563)
+
 Data, notebooks and figures for the paper *Central but Not Controllable: Female Playable Characters in Critically Acclaimed Video Games, 2012--2022*.
 
 The study combines game metadata from the [RAWG API](https://rawg.io/apidocs) with the character-level coding of the Kaggle dataset [*Gender Representation in Video Games*](https://www.kaggle.com/datasets/br33sa/gender-representation-in-video-games) (Palomar, 2022) to test four hypotheses on 60 critically acclaimed games (Metacritic >= 80), AAA and independent, released between 2012 and 2022:
@@ -121,8 +123,9 @@ If you use these data or code, please cite:
   year         = {2026},
   howpublished = {GitHub repository},
   version      = {v1.0},
+  doi          = {10.5281/zenodo.24486563},
   url          = {https://github.com/marinaladeira/female-characters-aaa-games-2012-2022}
 }
 ```
 
-The results reported in the paper correspond to release **v1.0** of this repository.
+The results reported in the paper correspond to release **v1.0** of this repository, archived on Zenodo: <https://doi.org/10.5281/zenodo.24486563>.
