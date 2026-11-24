@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use these data or code, please cite them as below."
+title: "Female characters in critically acclaimed games (2012-2022): Data and code"
+version: v1.0
+date-released: 2026-11-23
+authors:
+  - family-names: Ladeira
+    given-names: Marina
+license: MIT
+repository-code: "https://github.com/marinaladeira/female-characters-aaa-games-2012-2022"

@@ -21,14 +21,17 @@ The study combines game metadata from the [RAWG API](https://rawg.io/apidocs) wi
 │   │   ├── kaggle_games.csv        # Kaggle dataset - games table
 │   │   ├── kaggle_characters.csv   # Kaggle dataset - characters table
 │   │   └── kaggle_sexualization.csv# Kaggle dataset - sexualization index
-│   └── processed/                  # output of notebook 01, input of notebook 02
-│       ├── games.csv               # 60 games, one row per game
-│       └── characters.csv          # 578 characters, one row per character
+│   ├── processed/                  # output of notebook 01, input of notebook 02
+│   │   ├── games.csv               # 60 games, one row per game
+│   │   └── characters.csv          # 578 characters, one row per character
+│   └── qualitative/                # qualitative validation (Section III-D of the paper)
+│       └── verification_flags.csv  # ambiguous codings, impact and sensitivity checks
 ├── figures/                        # figures produced by notebook 02
 ├── notebooks/
 │   ├── 01_data_processing.ipynb    # collection, integration, cleaning and export
 │   └── 02_data_analysis.ipynb      # descriptive analysis and hypothesis tests
 ├── requirements.txt
+├── CITATION.cff
 ├── LICENSE                         # MIT (code)
 └── .env.example
 ```
@@ -75,11 +78,23 @@ Or open the notebooks with `jupyter lab` and run them in order.
 | Hypothesis | Primary test | Result | Decision |
 |---|---|---|---|
 | H1 | One-sided exact binomial | 14 of 60 games (23.33%), p = 2.11e-5 | Supported |
-| H2 | Mann-Whitney U | U = 37623.5, p = 2.20e-11 | Supported |
-| H3 | Pearson correlation (playable, N = 29) | r = -0.18, p = 0.342 | Not supported |
-| H4 | Permutation test on Kruskal-Wallis H (all female, N = 183) | H = 16.98, p = 0.010 | Supported (not robust to clustering by game: game-level permutation p = 0.127) |
+| H2 | One-sided Mann-Whitney U | U = 37623.5, p = 2.20e-11 | Supported |
+| H3 | Pearson correlation (playable, N = 29) | r = -0.18, p = 0.342 | Not supported (insufficient evidence) |
+| H4 | Permutation test on Kruskal-Wallis H (all female, N = 183) | H = 16.98, p = 0.010 | Exploratory, not robustly supported (game-level permutation p = 0.127) |
 
-The paper figures are `figures/fig_character_counts.png`, `figures/fig_share_by_role.png` and `figures/fig_sexualization_year.png`.
+Robustness checks reported in the paper (all in `02_data_analysis.ipynb`):
+
+- **H1**: 74 PA characters, more than one PA in 10 games; the result holds with the 44 games that have a male or female PA (14/44, p = 0.011) and with customizable protagonists counted as female (21/60, p = 0.014).
+- **H2**: holds for visual (OR = 18.28) and narrative dimensions (OR = 12.15) separately, with standard errors clustered by game, and under the disputed codings in `data/qualitative/verification_flags.csv` (OR between 11.08 and 17.40).
+- **H3**: Spearman (rho = -0.20, p = 0.295) and a logistic regression of index > 0 on release year, naive and clustered by game (p = 0.416 and 0.276), agree with the primary test; coding Ciri and Ellie as playable leaves it non-significant (r = -0.19, p = 0.29). The supplementary decline among all female characters (r = -0.22, p = 0.003) is not robust to clustering by game (p = 0.076).
+- **Centrality without control**: in the 38 games with both a central (PA or MC) female and male character, 16 make only the male playable and 8 only the female (exact McNemar p = 0.15). Among female characters, sexualization is not associated with protagonism (PA 13.3% vs. other 16.1%, Fisher p = 1.0) or playability (17.2% vs. 15.6%, p = 0.79).
+- **Subgroup counts** (Table IV of the paper): female characters, games and sexualized characters by period and genre.
+
+The figures of the paper are `figures/fig_share_by_role.png` (Fig. 1) and `figures/fig_sexualization_year.png` (Fig. 2); `figures/fig_character_counts.png` appeared in an earlier version.
+
+## Qualitative validation file
+
+`data/qualitative/verification_flags.csv` lists the ambiguous codings found in these cases or in the general review of the sample, their potential impact, the sensitivity check and the resolution. Following the paper, the index is used without recoding: flagged scores are kept and their impact is tested.
 
 ## Data sources and credits
 
@@ -105,6 +120,9 @@ If you use these data or code, please cite:
   title        = {Female characters in critically acclaimed games (2012--2022): Data and code},
   year         = {2026},
   howpublished = {GitHub repository},
+  version      = {v1.0},
   url          = {https://github.com/marinaladeira/female-characters-aaa-games-2012-2022}
 }
 ```
+
+The results reported in the paper correspond to release **v1.0** of this repository.
